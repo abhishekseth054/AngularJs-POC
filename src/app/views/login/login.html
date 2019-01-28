@@ -1,49 +1,66 @@
-<!DOCTYPE html>
-<html lang="en">
+<div class="container credit_bg">
+    <div class="row justify-content-center">
+        <div class="col-md-10 col-sm-10">
+            <div class="formBox">
+                <form name="loginForm" novalidate>
+                    <div class="row justify-content-center">
 
-  <head>
+                        <div class="col-md-6">
+                            <div class="Login_form">
+                                <div class="login_title">
+                                    <h3>Log In</h3>
+                                </div>
+                                <div class="form-group login-input">
+                                    <label>Email </label>
+                                    <input type="email" class="form-control" name="userMail" ng-model="lg.loginInfo.userName" 
+                                           ng-pattern="/^[a-zA-Z0-9]+((_|-|\.)[a-zA-Z0-9]+)*@[a-zA-Z0-9-]+\.([a-zA-Z]{1,10}((\.)[a-zA-Z]{2,5})?)$/"
+                                           placeholder="Enter Email" required />
+                                    <div class="text-danger errorMsg" ng-messages="loginForm.userMail.$error"
+                                         ng-if="loginForm.userMail.$dirty" role="alert">
+                                        <div ng-message="required">This field is required.</div>
+                                        <div ng-message="maxlength">Please enter between 5 to 50 characters.</div>
+                                        <div ng-message="minlength"> Please enter between 5 to 50 characters..</div>
+                                        <div ng-message="pattern">Please enter valid email.</div>
+                                    </div>
+                                </div>
+                                <div class="form-group passwd_input">
+                                    <label>Password </label>
+                                    <input type="password" class="form-control" name="userPassword" ng-model="lg.loginInfo.password"                                         
+                                            placeholder="Enter Password" required />
+                                    <div class="text-danger errorMsg" ng-messages="loginForm.userPassword.$error"
+                                         ng-if="loginForm.userPassword.$dirty" role="alert">
+                                        <div ng-message="required">This field is required.</div>
+                                        <div ng-message="maxlength">Please enter between 8 to 20 characters.</div>
+                                        <div ng-message="minlength">Please enter between 8 to 20 characters.</div>
+                                        <div ng-message="pattern">Please enter valid password.</div>
+                                    </div>
+                                </div>
 
-    <title>Admin - Login</title>
-
-  </head>
-
-  <body class="bg-dark">
-
-    <div class="container">
-      <div class="card card-login mx-auto mt-5">
-        <div class="card-header">Login</div>
-        <div class="card-body">
-          <form>
-            <div class="form-group">
-              <div class="form-label-group">
-                <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required="required" autofocus="autofocus">
-                <label for="inputEmail">Email address</label>
-              </div>
+                                <div class="row">
+                                    <div class="col-md-6 col-xs-12">
+                                        <div class="forget_paswd">
+                                            <a ui-sref="forgotPassword" class="btn btn-primary">Forgot Password?</a>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-xs-12 text-right">
+                                        <div class="forget_paswd">
+                                            <div class="contentBoxHeading">
+                                                <button class="btn btn-primary custom_new_custom" ng-disabled="loginForm.$invalid" ng-click="login()">Log In</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
             </div>
-            <div class="form-group">
-              <div class="form-label-group">
-                <input type="password" id="inputPassword" class="form-control" placeholder="Password" required="required">
-                <label for="inputPassword">Password</label>
-              </div>
-            </div>
-            <div class="form-group">
-              <div class="checkbox">
-                <label>
-                  <input type="checkbox" value="remember-me">
-                  Remember Password
-                </label>
-              </div>
-            </div>
-            <a class="btn btn-primary btn-block" href="index.html">Login</a>
-          </form>
-          <div class="text-center">
-            <a class="d-block small mt-3" href="%">Register an Account</a>
-            <a class="d-block small" href="#">Forgot Password?</a>
-          </div>
         </div>
-      </div>
     </div>
+</div>
 
-  </body>
 
-</html>
+<!-- START Loader -->
+<div class="spinnersContainer" ng-if="loader">
+    <img src="../../../assets/image/loader/loader.gif" alt="loading..." class="loaderGif" />
+</div>

@@ -24,18 +24,19 @@
   </head>
 
   <body id="page-top" ng-app="myApp">
-    <div id="main-header" ng-include="'./app/views/common/header.html'" toggle></div>
-    <div id="sidebar" ng-include="'./app/views/common/sidebar.html'" toggle></div>
-        
-    <div id="content-block" toggle ng-class="{noNavContentBlock : !noNav}">
-        <div ui-view></div>
-        <div id="footer" ng-include="'./app/views/common/footer.html'"></div>
-        <!-- START Loader -->
-        <div class="spinnersContainer" ng-if="loader">
-            <img src="../assets/img/loader/loader.gif" alt="loading..." class="loaderGif" />
+    <div ng-if="noNav" id="main-header" ng-include="'./app/views/common/header.html'" toggle></div>
+    <div id="wrapper">
+        <div ng-if="noNav" id="sidebar" ng-include="'./app/views/common/sidebar.html'" toggle></div>
+        <div id="content-wrapper" toggle ng-class="{noNavContentBlock : !noNav}">
+          <div class="container-fluid">
+            <div ui-view></div>
+          </div>
         </div>
     </div>
-    
+    <div ng-if="noNav" id="footer" ng-include="'./app/views/common/footer.html'" toggle></div>
+    <div class="spinnersContainer" ng-if="loader">
+        <img src="./assets/image/loader/loader.gif" alt="loading..." class="loaderGif" />
+    </div> 
 
     <!-- Scroll to Top Button-->
     <a class="scroll-to-top rounded" href="#page-top">
@@ -44,6 +45,8 @@
 
     <!-- Core plugin Angular-->
     <script src="./assets/vendor/angular/angular.min.js"></script>
+    <script src="/assets/vendor/angular/angular-resource.js"></script>
+    <script src="/assets/vendor/angular/angular-aria.min.js"></script>
     <script src="./assets/vendor/angular/angular-ui-router.js"></script>
     <script src="./assets/vendor/angular/ocLazyLoad.js"></script>
     <script src="./assets/vendor/angular/angular-local-storage.js"></script>
@@ -61,8 +64,14 @@
 
     <!-- Custom scripts for all pages-->
     <script src="./assets/js/admin.js"></script>
-
     <script src="app/component/app.js"></script>
+
+     <!-- Services -->
+     <script src="app//Services/common.services.js"></script>
+     <script src="app/services/auth/authService.js"></script>
+     <script src="app/services/auth/authInterceptorService.js"></script>
+
+     <!-- Controller -->
     <script src="app/views/common/headerCtrl.js"></script>
     <script src="app/views/common/sidebarCtrl.js"></script>
     <script src="app/views/login/loginCtrl.js"></script>

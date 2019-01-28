@@ -1,4 +1,6 @@
-var myApp = angular.module('myApp', ['ui.router', 'oc.lazyLoad','ngStorage']); 
+var myApp = angular.module('myApp', ['ui.router', 'oc.lazyLoad','ngStorage',
+            'common.services', 'LocalStorageModule', 
+            'ngStorage']); 
 
 myApp.config(function ($stateProvider, $urlRouterProvider) {
     $urlRouterProvider.otherwise('/login');
@@ -14,7 +16,7 @@ myApp.config(function ($stateProvider, $urlRouterProvider) {
                 return $ocLazyLoad.load({
                     name: "loginModule",
                     files: ['app/views/login/loginCtrl.js',
-                        //'common/services/users/userResource.js', 'common/services/users/userResourceRole.js'
+                         'app/services/users/userResource.js', 'app/services/users/userResourceRole.js'
                     ]
                 })
             }]
